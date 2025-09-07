@@ -15,11 +15,11 @@ enum TaskType: String, CaseIterable, Codable {
 }
 
 // MARK: - Base Task
-class Task: TaskProtocol {
+class Task: TaskProtocol, ObservableObject, Identifiable {
     var id = UUID()
-    var title: String
-    var dueDate: Date
-    var isCompleted: Bool = false
+    @Published var title: String
+    @Published var dueDate: Date
+    @Published var isCompleted: Bool = false
     var type: TaskType
     
     init(title: String, dueDate: Date, type: TaskType) {

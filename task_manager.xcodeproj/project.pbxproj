@@ -11,6 +11,7 @@
 		DBBF72E02E6DA91600BCBDE6 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */; };
 		DBBF72E12E6DA91600BCBDE6 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */; };
 		DBBF72E42E6DFE7600BCBDE6 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72E32E6DFE7600BCBDE6 /* EditTaskView.swift */; };
+		DBBF72F02E6E110700BCBDE6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DBBF72EF2E6E110000BCBDE6 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		DBBF72E32E6DFE7600BCBDE6 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
+		DBBF72EF2E6E110000BCBDE6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,6 +98,7 @@
 		DBBF728F2E6D9F3700BCBDE6 = {
 			isa = PBXGroup;
 			children = (
+				DBBF72EF2E6E110000BCBDE6 /* README.md */,
 				DBBF72DE2E6DA91600BCBDE6 /* Views */,
 				DBBF72D12E6DA73300BCBDE6 /* ViewModels */,
 				DBBF72CA2E6DA61F00BCBDE6 /* Models */,
@@ -249,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBBF72F02E6E110700BCBDE6 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -63,8 +63,10 @@ class TaskViewModel: ObservableObject {
     func toggleCompletion(task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isCompleted.toggle()
+            tasks[index] = tasks[index]   // ✅ forces SwiftUI to see array change
         }
     }
+
     
     // MARK: - Mark All Complete
     func markAllAsComplete() {
