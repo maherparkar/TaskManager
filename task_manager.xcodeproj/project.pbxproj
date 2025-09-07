@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DBBF72DF2E6DA91600BCBDE6 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */; };
+		DBBF72E02E6DA91600BCBDE6 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */; };
+		DBBF72E12E6DA91600BCBDE6 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DBBF72AE2E6D9F3800BCBDE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +33,9 @@
 		DBBF72982E6D9F3700BCBDE6 /* task_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = task_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBF72AD2E6D9F3800BCBDE6 /* task_managerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = task_managerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBF72B72E6D9F3800BCBDE6 /* task_managerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = task_managerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,6 +94,7 @@
 		DBBF728F2E6D9F3700BCBDE6 = {
 			isa = PBXGroup;
 			children = (
+				DBBF72DE2E6DA91600BCBDE6 /* Views */,
 				DBBF72D12E6DA73300BCBDE6 /* ViewModels */,
 				DBBF72CA2E6DA61F00BCBDE6 /* Models */,
 				DBBF729A2E6D9F3700BCBDE6 /* task_manager */,
@@ -102,6 +112,16 @@
 				DBBF72B72E6D9F3800BCBDE6 /* task_managerUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DBBF72DE2E6DA91600BCBDE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */,
+				DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */,
+				DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBBF72DF2E6DA91600BCBDE6 /* TaskListView.swift in Sources */,
+				DBBF72E02E6DA91600BCBDE6 /* AddTaskView.swift in Sources */,
+				DBBF72E12E6DA91600BCBDE6 /* TaskRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
