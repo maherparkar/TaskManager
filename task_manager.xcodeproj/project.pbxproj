@@ -45,6 +45,11 @@
 			path = task_managerUITests;
 			sourceTree = "<group>";
 		};
+		DBBF72CA2E6DA61F00BCBDE6 /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 		DBBF728F2E6D9F3700BCBDE6 = {
 			isa = PBXGroup;
 			children = (
+				DBBF72CA2E6DA61F00BCBDE6 /* Models */,
 				DBBF729A2E6D9F3700BCBDE6 /* task_manager */,
 				DBBF72B02E6D9F3800BCBDE6 /* task_managerTests */,
 				DBBF72BA2E6D9F3800BCBDE6 /* task_managerUITests */,
@@ -109,6 +115,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				DBBF729A2E6D9F3700BCBDE6 /* task_manager */,
+				DBBF72CA2E6DA61F00BCBDE6 /* Models */,
 			);
 			name = task_manager;
 			packageProductDependencies = (
