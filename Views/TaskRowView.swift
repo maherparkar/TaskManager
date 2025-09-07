@@ -1,11 +1,3 @@
-//
-//  TaskRowView.swift
-//  task_manager
-//
-//  Created by Maher Parkar on 7/9/2025.
-//
-
-
 import SwiftUI
 
 struct TaskRowView: View {
@@ -14,14 +6,39 @@ struct TaskRowView: View {
     
     var body: some View {
         HStack {
-            Text(task.title)
-            Spacer()
-            if task.isCompleted {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+            // ✅ Toggle button
+            Button(action: toggle) {
+                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(task.isCompleted ? .green : .gray)
+                    .imageScale(.large)
             }
+            
+            VStack(alignment: .leading, spacing: 4) {
+                // ✅ Task title
+                Text(task.title)
+                    .font(.headline)
+                    .foregroundColor(task.isCompleted ? .gray : .primary)
+                    .strikethrough(task.isCompleted, color: .gray)
+                
+                // ✅ Due date
+                Text("Due: \(task.dueDate.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.subheadline)
+                    .foregroundColor(task.isCompleted ? .gray : .secondary)
+                
+                // ✅ Task type label
+                if let _ = task as? PersonalTask {
+                    Text("Personal Task").font(.caption).foregroundColor(.blue)
+                } else if let _ = task as? WorkTask {
+                    Text("Work Task").font(.caption).foregroundColor(.red)
+                } else if let _ = task as? ShoppingTask {
+                    Text("Shopping Task").font(.caption).foregroundColor(.orange)
+                }
+            }
+            Spacer()
         }
-        .contentShape(Rectangle()) // makes whole row tappable
-        .onTapGesture { toggle() }
+        .padding(.vertical, 6)
+        .background(task.isCompleted ? Color(.systemGray6) : Color.clear) // ✅ Dim background
+        .cornerRadius(8)
     }
 }
+

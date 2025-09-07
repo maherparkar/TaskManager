@@ -1,21 +1,10 @@
-//
-//  PersonalTask.swift
-//  task_manager
-//
-//  Created by Maher Parkar on 7/9/2025.
-//
-
-
 import Foundation
 
 class PersonalTask: Task {
     var notes: String?
-}
-
-class WorkTask: Task {
-    var project: String?
-}
-
-class ShoppingTask: Task {
-    var storeName: String?
+    
+    init(title: String, dueDate: Date, notes: String? = nil) {
+        self.notes = notes
+        super.init(title: title, dueDate: dueDate, type: .personal)
+    }
 }

@@ -14,15 +14,6 @@ protocol TaskProtocol: Identifiable {
     var dueDate: Date { get set }
     var isCompleted: Bool { get set }
     
-    mutating func markCompleted()
-}
-
-extension TaskProtocol {
-    mutating func markCompleted() {
-        self.isCompleted = true
-    }
-    
-    func isOverdue() -> Bool {
-        return Date() > dueDate && !isCompleted
-    }
+    func isOverdue() -> Bool
+    func markCompleted()
 }

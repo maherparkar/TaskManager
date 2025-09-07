@@ -10,6 +10,7 @@
 		DBBF72DF2E6DA91600BCBDE6 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */; };
 		DBBF72E02E6DA91600BCBDE6 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */; };
 		DBBF72E12E6DA91600BCBDE6 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */; };
+		DBBF72E42E6DFE7600BCBDE6 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF72E32E6DFE7600BCBDE6 /* EditTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		DBBF72E32E6DFE7600BCBDE6 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -117,6 +119,7 @@
 		DBBF72DE2E6DA91600BCBDE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBBF72E32E6DFE7600BCBDE6 /* EditTaskView.swift */,
 				DBBF72DB2E6DA91600BCBDE6 /* AddTaskView.swift */,
 				DBBF72DC2E6DA91600BCBDE6 /* TaskListView.swift */,
 				DBBF72DD2E6DA91600BCBDE6 /* TaskRowView.swift */,
@@ -273,6 +276,7 @@
 				DBBF72DF2E6DA91600BCBDE6 /* TaskListView.swift in Sources */,
 				DBBF72E02E6DA91600BCBDE6 /* AddTaskView.swift in Sources */,
 				DBBF72E12E6DA91600BCBDE6 /* TaskRowView.swift in Sources */,
+				DBBF72E42E6DFE7600BCBDE6 /* EditTaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
