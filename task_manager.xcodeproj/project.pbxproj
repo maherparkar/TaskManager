@@ -68,6 +68,11 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		DBBF72F92E6F0A0300BCBDE6 /* screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +103,7 @@
 		DBBF728F2E6D9F3700BCBDE6 = {
 			isa = PBXGroup;
 			children = (
+				DBBF72F92E6F0A0300BCBDE6 /* screenshots */,
 				DBBF72EF2E6E110000BCBDE6 /* README.md */,
 				DBBF72DE2E6DA91600BCBDE6 /* Views */,
 				DBBF72D12E6DA73300BCBDE6 /* ViewModels */,
@@ -149,6 +155,7 @@
 				DBBF729A2E6D9F3700BCBDE6 /* task_manager */,
 				DBBF72CA2E6DA61F00BCBDE6 /* Models */,
 				DBBF72D12E6DA73300BCBDE6 /* ViewModels */,
+				DBBF72F92E6F0A0300BCBDE6 /* screenshots */,
 			);
 			name = task_manager;
 			packageProductDependencies = (
