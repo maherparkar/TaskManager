@@ -12,21 +12,33 @@ struct AddTaskView: View {
     var body: some View {
         NavigationView {
             Form {
-                // ✅ Task Title
-                TextField("Task Title", text: $title)
+                // ✅ Title
+                Section(header: Text("Task Title")) {
+                    TextField("Enter task title", text: $title)
+                        .textFieldStyle(.roundedBorder)
+                }
                 
-                // ✅ Due Date Picker
-                DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                // ✅ Due Date
+                Section(header: Text("Due Date")) {
+                    DatePicker("Select date", selection: $dueDate, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
+                }
                 
-                // ✅ Task Type Picker
-                Picker("Task Type", selection: $selectedType) {
-                    ForEach(TaskType.allCases, id: \.self) { type in
-                        Text(type.rawValue).tag(type)
+                // ✅ Task Type
+                Section(header: Text("Category")) {
+                    Picker("Task Type", selection: $selectedType) {
+                        ForEach(TaskType.allCases, id: \.self) { type in
+                            Text(type.rawValue).tag(type)
+                        }
                     }
+                    .pickerStyle(.segmented)
                 }
             }
             .navigationTitle("Add Task")
             .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
@@ -36,9 +48,7 @@ struct AddTaskView: View {
                             errorMessage = ErrorMessage(message: error.localizedDescription)
                         }
                     }
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
         }

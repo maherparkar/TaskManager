@@ -1,48 +1,68 @@
-//
-//  EditTaskView.swift
-//  task_manager
-//
-//  Created by Maher Parkar on 8/9/2025.
-//
-
-
 import SwiftUI
 
 struct EditTaskView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: TaskViewModel
-    @State var task: Task
-    @State private var newTitle: String
-    @State private var newDate: Date
     
-    init(viewModel: TaskViewModel, task: Task) {
-        self.viewModel = viewModel
-        _task = State(initialValue: task)
-        _newTitle = State(initialValue: task.title)
-        _newDate = State(initialValue: task.dueDate)
-    }
+    @State var task: Task
+    @State private var error: TaskError? = nil
     
     var body: some View {
         NavigationView {
             Form {
-                TextField("Task Title", text: $newTitle)
-                DatePicker("Due Date", selection: $newDate, displayedComponents: .date)
+                // ✅ Title
+                Section(header: Text("Task Title")) {
+                    TextField("Enter task title", text: $task.title)
+                        .textFieldStyle(.roundedBorder)
+                        .accessibilityIdentifier("EditTaskTitleField")
+                }
+                
+                // ✅ Due Date
+                Section(header: Text("Due Date")) {
+                    DatePicker("Select date", selection: $task.dueDate, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
+                }
+                
+                // ✅ Task Type
+                Section(header: Text("Category")) {
+                    Picker("Task Type", selection: $task.type) {
+                        ForEach(TaskType.allCases, id: \.self) { type in
+                            Text(type.rawValue).tag(type)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .accessibilityIdentifier("EditTaskTypePicker")
+                }
             }
             .navigationTitle("Edit Task")
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        if let index = viewModel.tasks.firstIndex(where: { $0.id == task.id }) {
-                            viewModel.tasks[index].title = newTitle
-                            viewModel.tasks[index].dueDate = newDate
-                        }
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        do {
+                            try viewModel.updateTask(task: task)
+                            dismiss()
+                        } catch let taskError as TaskError {
+                            self.error = taskError
+                        } catch {
+                            self.error = .invalidTitle
+                        }
+                    }
+                    .disabled(task.title.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .accessibilityIdentifier("EditSaveButton")
+                }
             }
+        }
+        .alert(item: $error) { error in
+            Alert(
+                title: Text("Error"),
+                message: Text(error.localizedDescription),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
 }
+

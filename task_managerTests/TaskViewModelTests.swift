@@ -10,7 +10,7 @@ final class TaskViewModelTests: XCTestCase {
         // Reset persistence before every test
         UserDefaults.standard.removeObject(forKey: "savedTasks")
         viewModel = TaskViewModel()
-        viewModel.tasks.removeAll() // ✅ start fresh in memory
+        viewModel.tasks.removeAll()
     }
     
     override func tearDown() {
@@ -44,13 +44,34 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.tasks.first!.isCompleted)
     }
     
-    // MARK: - Delete Task
+   
     func testDeleteTask() throws {
         try viewModel.addTask(title: "Call Mom", dueDate: Date(), type: .personal)
         XCTAssertEqual(viewModel.tasks.count, 1)
         
-        viewModel.deleteTask(at: IndexSet(integer: 0))
+        let id = viewModel.tasks.first!.id
+        viewModel.deleteTask(by: id)   // ✅ FIX: match ViewModel function
+        
         XCTAssertTrue(viewModel.tasks.isEmpty)
+    }
+
+    
+    func testDeleteTaskByID() throws {
+        try viewModel.addTask(title: "Call Dad", dueDate: Date(), type: .personal)
+        let taskID = viewModel.tasks.first!.id
+        
+        viewModel.deleteTask(by: taskID)
+        XCTAssertTrue(viewModel.tasks.isEmpty)
+    }
+    
+    // MARK: - Update Task
+    func testUpdateTask() throws {
+        try viewModel.addTask(title: "Old Title", dueDate: Date(), type: .work)
+        var task = viewModel.tasks.first!
+        task.title = "New Title"
+        
+        try viewModel.updateTask(task: task)
+        XCTAssertEqual(viewModel.tasks.first?.title, "New Title")
     }
     
     // MARK: - Mark All As Complete
@@ -72,6 +93,23 @@ final class TaskViewModelTests: XCTestCase {
         
         XCTAssertEqual(viewModel.tasks.count, 1)
         XCTAssertEqual(viewModel.tasks.first?.title, "Task 2")
+    }
+    
+    // MARK: - Filtering
+    func testPendingAndCompletedFiltering() throws {
+        try viewModel.addTask(title: "Study Swift", dueDate: Date(), type: .study)
+        try viewModel.addTask(title: "Pay Bills", dueDate: Date(), type: .finance)
+        
+        viewModel.tasks[0].isCompleted = true
+        
+        XCTAssertEqual(viewModel.pendingTasks(for: .finance).count, 1)
+        XCTAssertEqual(viewModel.completedTasks(for: .study).count, 1)
+    }
+    
+    // MARK: - Error Messages
+    func testErrorMessages() {
+        let error = TaskError.invalidTitle
+        XCTAssertEqual(error.localizedDescription, "Task title cannot be empty.")
     }
     
     // MARK: - Persistence

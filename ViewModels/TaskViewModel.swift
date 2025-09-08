@@ -49,25 +49,25 @@ class TaskViewModel: ObservableObject {
             newTask = WorkTask(title: title, dueDate: dueDate)
         case .shopping:
             newTask = ShoppingTask(title: title, dueDate: dueDate)
+        case .fitness:
+            newTask = FitnessTask(title: title, dueDate: dueDate)
+        case .study:
+            newTask = StudyTask(title: title, dueDate: dueDate)
+        case .finance:
+            newTask = FinanceTask(title: title, dueDate: dueDate)
         }
         
         tasks.append(newTask)
-    }
-    
-    // MARK: - Delete Task
-    func deleteTask(at offsets: IndexSet) {
-        tasks.remove(atOffsets: offsets)
     }
     
     // MARK: - Toggle Completion
     func toggleCompletion(task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isCompleted.toggle()
-            tasks[index] = tasks[index]   // ✅ forces SwiftUI to see array change
+            tasks[index] = tasks[index]   // ✅ force update
         }
     }
 
-    
     // MARK: - Mark All Complete
     func markAllAsComplete() {
         for i in 0..<tasks.count {
@@ -75,11 +75,36 @@ class TaskViewModel: ObservableObject {
         }
     }
     
+    // ✅ Pending tasks by type
+    func pendingTasks(for type: TaskType) -> [Task] {
+        tasks.filter { !$0.isCompleted && $0.type == type }
+    }
+
+    // ✅ Completed tasks by type
+    func completedTasks(for type: TaskType) -> [Task] {
+        tasks.filter { $0.isCompleted && $0.type == type }
+    }
+
+    // ✅ Delete by ID
+    func deleteTask(by id: UUID) {
+        tasks.removeAll { $0.id == id }
+    }
+
     // MARK: - Clear Completed
     func clearCompleted() {
         tasks.removeAll { $0.isCompleted }
     }
     
+    // MARK: - Update Task
+    func updateTask(task: Task) throws {
+        guard !task.title.trimmingCharacters(in: .whitespaces).isEmpty else {
+            throw TaskError.invalidTitle
+        }
+        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+            tasks[index] = task
+        }
+    }
+
     // MARK: - Persistence
     private func saveTasks() {
         let storedTasks = tasks.map {
@@ -112,6 +137,12 @@ class TaskViewModel: ObservableObject {
                 task = WorkTask(title: stored.title, dueDate: stored.dueDate)
             case .shopping:
                 task = ShoppingTask(title: stored.title, dueDate: stored.dueDate)
+            case .fitness:
+                task = FitnessTask(title: stored.title, dueDate: stored.dueDate)
+            case .study:
+                task = StudyTask(title: stored.title, dueDate: stored.dueDate)
+            case .finance:
+                task = FinanceTask(title: stored.title, dueDate: stored.dueDate)
             }
             task.isCompleted = stored.isCompleted // ✅ Restore state
             return task

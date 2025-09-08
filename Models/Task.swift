@@ -12,6 +12,9 @@ enum TaskType: String, CaseIterable, Codable {
     case personal = "Personal"
     case work = "Work"
     case shopping = "Shopping"
+    case fitness = "Fitness"
+    case study = "Study"
+    case finance = "Finance"
 }
 
 // MARK: - Base Task
