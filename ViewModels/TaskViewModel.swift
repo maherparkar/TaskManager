@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - Lightweight persistence model
+// Lightweight persistence model
 struct StoredTask: Codable, Identifiable {
     var id: UUID
     var title: String
@@ -9,7 +9,7 @@ struct StoredTask: Codable, Identifiable {
     var type: TaskType
 }
 
-// MARK: - Task Errors
+// Task Errors
 enum TaskError: Error, LocalizedError, Identifiable {
     case invalidTitle
     
@@ -23,7 +23,7 @@ enum TaskError: Error, LocalizedError, Identifiable {
     }
 }
 
-// MARK: - Task ViewModel
+// Task ViewModel
 class TaskViewModel: ObservableObject {
     @Published var tasks: [Task] = [] {
         didSet { saveTasks() }
@@ -35,7 +35,7 @@ class TaskViewModel: ObservableObject {
         loadTasks()
     }
     
-    // MARK: - Add Task
+    // Add Task
     func addTask(title: String, dueDate: Date, type: TaskType) throws {
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
             throw TaskError.invalidTitle
@@ -60,7 +60,7 @@ class TaskViewModel: ObservableObject {
         tasks.append(newTask)
     }
     
-    // MARK: - Toggle Completion
+    // toggle Completion
     func toggleCompletion(task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isCompleted.toggle()
@@ -68,34 +68,34 @@ class TaskViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Mark All Complete
+    // Mark All Complete
     func markAllAsComplete() {
         for i in 0..<tasks.count {
             tasks[i].isCompleted = true
         }
     }
     
-    // ✅ Pending tasks by type
+    // Pending tasks by type
     func pendingTasks(for type: TaskType) -> [Task] {
         tasks.filter { !$0.isCompleted && $0.type == type }
     }
 
-    // ✅ Completed tasks by type
+    // Completed tasks by type
     func completedTasks(for type: TaskType) -> [Task] {
         tasks.filter { $0.isCompleted && $0.type == type }
     }
 
-    // ✅ Delete by ID
+    //  Delete by ID
     func deleteTask(by id: UUID) {
         tasks.removeAll { $0.id == id }
     }
 
-    // MARK: - Clear Completed
+    // clear Completed
     func clearCompleted() {
         tasks.removeAll { $0.isCompleted }
     }
     
-    // MARK: - Update Task
+    // pdate Task
     func updateTask(task: Task) throws {
         guard !task.title.trimmingCharacters(in: .whitespaces).isEmpty else {
             throw TaskError.invalidTitle
@@ -105,7 +105,7 @@ class TaskViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Persistence
+    // Persistence
     private func saveTasks() {
         let storedTasks = tasks.map {
             StoredTask(

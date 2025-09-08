@@ -64,7 +64,7 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.tasks.isEmpty)
     }
     
-    // MARK: - Update Task
+    // Update Task
     func testUpdateTask() throws {
         try viewModel.addTask(title: "Old Title", dueDate: Date(), type: .work)
         var task = viewModel.tasks.first!
@@ -74,7 +74,7 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.tasks.first?.title, "New Title")
     }
     
-    // MARK: - Mark All As Complete
+    // Mark All As Complete
     func testMarkAllAsComplete() throws {
         try viewModel.addTask(title: "Task 1", dueDate: Date(), type: .work)
         try viewModel.addTask(title: "Task 2", dueDate: Date(), type: .shopping)
@@ -83,7 +83,7 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.tasks.allSatisfy { $0.isCompleted })
     }
     
-    // MARK: - Clear Completed
+    // Clear Completed
     func testClearCompleted() throws {
         try viewModel.addTask(title: "Task 1", dueDate: Date(), type: .personal)
         try viewModel.addTask(title: "Task 2", dueDate: Date(), type: .work)
@@ -95,7 +95,7 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.tasks.first?.title, "Task 2")
     }
     
-    // MARK: - Filtering
+    // Filtering
     func testPendingAndCompletedFiltering() throws {
         try viewModel.addTask(title: "Study Swift", dueDate: Date(), type: .study)
         try viewModel.addTask(title: "Pay Bills", dueDate: Date(), type: .finance)
@@ -106,13 +106,13 @@ final class TaskViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.completedTasks(for: .study).count, 1)
     }
     
-    // MARK: - Error Messages
+    // Error Messages
     func testErrorMessages() {
         let error = TaskError.invalidTitle
         XCTAssertEqual(error.localizedDescription, "Task title cannot be empty.")
     }
     
-    // MARK: - Persistence
+    // Persistence
     func testPersistenceSaveAndLoad() throws {
         try viewModel.addTask(title: "Persistent Task", dueDate: Date(), type: .shopping)
         

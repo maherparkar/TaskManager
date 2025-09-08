@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Task Types
+// Task Types
 enum TaskType: String, CaseIterable, Codable {
     case personal = "Personal"
     case work = "Work"
@@ -17,7 +17,7 @@ enum TaskType: String, CaseIterable, Codable {
     case finance = "Finance"
 }
 
-// MARK: - Base Task
+// Base Task
 class Task: TaskProtocol, ObservableObject, Identifiable {
     var id = UUID()
     @Published var title: String

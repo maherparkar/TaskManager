@@ -6,13 +6,13 @@ struct TaskListView: View {
     @State private var showingEditTask: Task? = nil
     @State private var errorMessage: ErrorMessage?
     
-    // ✅ Selected filter (default = All)
+    //  Selected filter (default = All)
     @State private var selectedFilter: TaskType? = nil
     
     var body: some View {
         NavigationView {
             VStack {
-                // MARK: - Filter Bar
+                // Filter Bar
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         filterButton(label: "All", type: nil, color: .blue)
@@ -29,14 +29,14 @@ struct TaskListView: View {
                 ScrollView {
                     VStack(spacing: 28) {
                         
-                        // 🔹 Active Tasks
+                        // Active Tasks
                         taskSection(
                             title: "My Tasks",
                             tasks: viewModel.tasks.filter { !$0.isCompleted },
                             emptyText: "No pending tasks 🎉"
                         )
                         
-                        // 🔹 Completed Tasks
+                        // Completed Tasks
                         taskSection(
                             title: "Completed Tasks",
                             tasks: viewModel.tasks.filter { $0.isCompleted },
@@ -86,7 +86,7 @@ struct TaskListView: View {
         }
     }
     
-    // MARK: - Filter Button Builder
+    // Filter Button Builder
     private func filterButton(label: String, type: TaskType?, color: Color) -> some View {
         Button(action: { selectedFilter = type }) {
             Text(label)
@@ -99,7 +99,7 @@ struct TaskListView: View {
         }
     }
     
-    // MARK: - Task Section Builder
+    // Task Section Builder
     @ViewBuilder
     private func taskSection(title: String, tasks: [Task], emptyText: String, allowClear: Bool = false) -> some View {
         let filteredTasks = selectedFilter == nil ? tasks : tasks.filter { $0.type == selectedFilter }
@@ -142,7 +142,7 @@ struct TaskListView: View {
         }
     }
     
-    // MARK: - TaskType Colors
+    // TaskType Colors
     private func typeColor(for type: TaskType) -> Color {
         switch type {
         case .personal: return .blue

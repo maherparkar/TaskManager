@@ -6,7 +6,7 @@ struct TaskRowView: View {
     var onDelete: () -> Void
     var onEdit: () -> Void
     
-    // MARK: - Task type color
+    // Task type color
     private var typeColor: Color {
         switch task.type {
         case .personal: return .blue
@@ -18,7 +18,7 @@ struct TaskRowView: View {
         }
     }
     
-    // MARK: - Task type icon
+    // Task type icon
     private var typeIcon: String {
         switch task.type {
         case .personal: return "person.fill"
@@ -32,7 +32,7 @@ struct TaskRowView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            // ✅ Completion toggle
+            // Completion toggle
             Button(action: toggle) {
                 Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(task.isCompleted ? .green : typeColor)
@@ -40,7 +40,7 @@ struct TaskRowView: View {
             }
             
             VStack(alignment: .leading, spacing: 6) {
-                // ✅ Title + Icon
+                // Title + Icon
                 HStack {
                     Image(systemName: typeIcon)
                         .foregroundColor(typeColor)
@@ -53,12 +53,12 @@ struct TaskRowView: View {
                         .foregroundColor(task.isCompleted ? .gray : .primary)
                 }
                 
-                // ✅ Due date
+                // Due date
                 Text("Due: \(task.dueDate.formatted(date: .abbreviated, time: .omitted))")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                // ✅ Badge for type
+                // Badge for type
                 Text(task.type.rawValue)
                     .font(.caption2)
                     .fontWeight(.semibold)
@@ -70,7 +70,7 @@ struct TaskRowView: View {
             }
             Spacer()
             
-            // ✅ Edit + Delete Actions
+            // Edit + Delete Actions
             HStack(spacing: 16) {
                 Button(action: onEdit) {
                     Image(systemName: "pencil.circle.fill")
